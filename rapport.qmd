@@ -127,3 +127,52 @@ ggsave("figurer/figur-vo2maks2.png", fig_resultater,
        width = 12, height = 9, units = "cm")
 
 ```
+
+```{r}
+#|warning: false
+#|message: false
+#|echo: false
+
+library(tidyverse)
+library(knitr)
+
+tabell_resultater <- read.csv("data/behandlet/behandlet_vo2maks.csv")
+
+tabell_resultater <- tabell_resultater |> 
+  mutate(starttidspunkt = factor(starttidspunkt, levels = c("Morgen", "Kveld"))) |> 
+  
+  group_by(starttidspunkt) |> 
+  summarise(
+    snitt_vo2 = mean(VO2_maks_rel, na.rm = TRUE),
+    avvik_vo2 = sd(VO2_maks_rel, na.rm = TRUE),
+    snitt_hf = mean(HF_maks, na.rm = TRUE),
+    avvik_hf = sd(HF_maks, na.rm = TRUE),
+    snitt_laktat = mean(la_maks, na.rm = TRUE),
+    avvik_laktat = sd(la_maks, na.rm = TRUE),
+    snitt_RER = mean(RER_maks, na.rm = TRUE),
+    avvik_RER = sd(RER_maks, na.rm = TRUE),
+    snitt_borg = mean(borg_maks, na.rm = TRUE),
+    avvik_borg = sd(borg_maks, na.rm = TRUE)
+  ) |> 
+  
+  mutate(
+    VO2maks = paste0(round(snitt_vo2, 1), " ± ", round(avvik_vo2, 1)),
+    Hjertefrekvens = paste0(round(snitt_hf, 0), " ± ", round(avvik_hf, 0)),
+    Laktat = paste0(round(snitt_laktat, 2), " ± ", round(avvik_laktat, 2)),
+    RER = paste0(round(snitt_RER, 2), " ± ", round(avvik_RER, 2)),
+    Borg = paste0(round(snitt_borg, 0), " ± ", round(avvik_borg, 0))
+  ) |> 
+  
+  select(starttidspunkt, 
+         VO2maks, 
+         Hjertefrekvens, 
+         Laktat, 
+         RER, 
+         Borg) |> 
+  
+  pivot_longer(cols = -starttidspunkt, names_to = "Variabel", values_to = "verdi") |> 
+  pivot_wider(names_from = starttidspunkt, values_from = "verdi")
+
+kable(tabell_resultater, 
+      caption = "Deskriptiv statistikk for morgen- og kveldstester")
+```
