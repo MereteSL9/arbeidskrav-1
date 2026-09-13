@@ -2,6 +2,10 @@
 title: "Arbeidskrav 1: Arbeidsfysiologisk rapport"
 format: pdf
 editor: visual
+execute: 
+  warning: false
+  echo: false
+  message: false
 editor_options: 
   chunk_output_type: console
 ---
@@ -71,7 +75,7 @@ ggsave("figurer/figur-vo2maks.png", figur_resultater,
 library(tidyverse)
 library(knitr)
 library(readxl)
-#| label: fig-vo2maks3
+#| label: fig-vo2maks2
 #| fig-cap: "Forskjell i VO2 maks mellom morgen og kveld"
 
 #FORSLAG 2
@@ -104,7 +108,7 @@ fig_resultater <- ggplot(data = tabell,
     breaks = seq(2.5, 7.0, by = 0.5),
     expand = c(0, 0)) + 
   
-  theme_linedraw() +
+  theme_classic() +
   
   annotate("segment", x = 1, xend = 2, y = 6, yend = 6) + 
   annotate("segment",
@@ -115,6 +119,8 @@ fig_resultater <- ggplot(data = tabell,
   
   annotate("text", label = paste0("P-verdi = ", pval),
            x = 1.5, y = 6.2)
+
+print(fig_resultater)
 
 ggsave("figurer/figur-vo2maks2.png", fig_resultater, 
        width = 12, height = 9, units = "cm")
