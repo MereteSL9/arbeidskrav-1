@@ -2,6 +2,115 @@
 title: "Arbeidskrav 1: Arbeidsfysiologisk rapport"
 format: pdf
 editor: visual
+editor_options: 
+  chunk_output_type: console
 ---
 
-## Quarto
+## 
+
+```{r}
+library(tidyverse)
+library(knitr)
+library(readxl)
+
+raadata <- read_excel("data/raa/raadata_vo2maks.xlsx")
+
+tabell_deltakere <- raadata |> 
+  select(deltager,
+         kjonn,
+         alder) |>  
+  
+  distinct() |> 
+  
+  mutate(kjonn = if_else(kjonn == "m", "Mann", "Kvinne"))
+
+kable(
+  tabell_deltakere,
+  format = "latex",
+  col.names = c("Deltaker", "Kjønn", "Alder (år)"),
+  booktabs = TRUE,
+  linesep = "") 
+```
+
+```{r}
+#| label: fig-vo2maks
+#| fig-cap: "Forskjell i VO2 maks mellom morgen og kveld"
+
+behandlede_data <- read.csv("data/behandlet/behandlet_vo2maks.csv")
+
+behandlede_data <- behandlede_data |> 
+  mutate(starttidspunkt = factor(starttidspunkt, levels = c("Morgen", "Kveld")))
+
+figur_resultater <- ggplot(data = behandlede_data,
+                 aes(deltager, VO2_maks_abs/1000)) +
+  
+  geom_point(size = 1.5,
+             color = "black") + 
+  
+  facet_wrap(~ starttidspunkt) +
+  
+  labs(
+    x = "Deltagere",
+    y = "VO2-maks (L/min)") + 
+  
+  scale_y_continuous(
+    limits = c(2.8, 5.5),
+    breaks = seq(2.5, 5.5, by = 0.5),
+    expand = c(0, 0)) + 
+  
+  theme_bw()
+
+print(figur_resultater)
+
+ggsave("figurer/figur-vo2maks.png", figur_resultater, 
+       width = 12, height = 9, units = "cm")
+```
+
+```{r}
+library(tidyverse)
+library(knitr)
+library(readxl)
+#| label: fig-vo2maks3
+#| fig-cap: "Forskjell i VO2 maks mellom morgen og kveld"
+
+tabell <- read.csv("data/behandlet/behandlet_vo2maks.csv")
+
+mod <- lm(VO2_maks_abs ~ starttidspunkt + deltager, data = tabell)
+pval <- round(coef(summary(mod))[2, 4], 5)
+
+
+tabell <- tabell |> 
+  mutate(starttidspunkt = factor(starttidspunkt, levels = c("Morgen", "Kveld")))
+
+fig_resultater <- ggplot(data = tabell,
+                 aes(x = starttidspunkt, y = VO2_maks_abs/1000, group = deltager, color = deltager)) +
+  
+  geom_line(linewidth = 0.7) + 
+  
+  geom_point(size = 1.5,
+             color = "black",
+             fill = "grey") + 
+  
+  labs(
+    x = "Tid på døgnet",
+    y = "VO2-maks (L/min)",
+    
+    color = "Deltager") + 
+  
+  scale_y_continuous(
+    limits = c(2.8, 7.0),
+    breaks = seq(2.5, 7.0, by = 0.5),
+    expand = c(0, 0)) + 
+  
+  theme_linedraw() +
+  
+  annotate("segment", x = 1, xend = 2, y = 6, yend = 6) + 
+  annotate("segment",
+           x = c(1, 2), 
+           xend = c(1, 2),
+           y = c(6, 6),
+           yend = c(5.9, 5.9)) + 
+  
+  annotate("text", label = paste0("P-verdi = ", pval),
+           x = 1.5, y = 6.2)
+```
