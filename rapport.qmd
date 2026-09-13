@@ -36,6 +36,7 @@ kable(
 #| label: fig-vo2maks
 #| fig-cap: "Forskjell i VO2 maks mellom morgen og kveld"
 
+#FORSLAG 1
 behandlede_data <- read.csv("data/behandlet/behandlet_vo2maks.csv")
 
 behandlede_data <- behandlede_data |> 
@@ -45,7 +46,7 @@ figur_resultater <- ggplot(data = behandlede_data,
                  aes(deltager, VO2_maks_abs/1000)) +
   
   geom_point(size = 1.5,
-             color = "black") + 
+color = "black") + 
   
   facet_wrap(~ starttidspunkt) +
   
@@ -73,6 +74,7 @@ library(readxl)
 #| label: fig-vo2maks3
 #| fig-cap: "Forskjell i VO2 maks mellom morgen og kveld"
 
+#FORSLAG 2
 tabell <- read.csv("data/behandlet/behandlet_vo2maks.csv")
 
 mod <- lm(VO2_maks_abs ~ starttidspunkt + deltager, data = tabell)
@@ -113,4 +115,8 @@ fig_resultater <- ggplot(data = tabell,
   
   annotate("text", label = paste0("P-verdi = ", pval),
            x = 1.5, y = 6.2)
+
+ggsave("figurer/figur-vo2maks2.png", fig_resultater, 
+       width = 12, height = 9, units = "cm")
+
 ```
