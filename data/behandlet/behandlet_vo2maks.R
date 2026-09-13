@@ -32,5 +32,3 @@ write.csv(data_behandlet,
           file = "./data/behandlet/behandlet_vo2maks.csv", 
           row.names = FALSE)
 
-head(data_behandlet)
-

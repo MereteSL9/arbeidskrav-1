@@ -17,9 +17,9 @@ library(tidyverse)
 library(knitr)
 library(readxl)
 
-raadata <- read_excel("data/raa/raadata_vo2maks.xlsx")
+tabell_deltakere <- read.csv("data/behandlet/behandlet_vo2maks.csv")
 
-tabell_deltakere <- raadata |> 
+tabell_deltakere <- tabell_deltakere |> 
   select(deltager,
          kjonn,
          alder) |>  
@@ -37,6 +37,7 @@ kable(
 ```
 
 ```{r}
+library(ggplot2)
 #| label: fig-vo2maks
 #| fig-cap: "Forskjell i VO2 maks mellom morgen og kveld"
 
@@ -108,7 +109,7 @@ fig_resultater <- ggplot(data = tabell,
     breaks = seq(2.5, 7.0, by = 0.5),
     expand = c(0, 0)) + 
   
-  theme_classic() +
+  theme_linedraw() +
   
   annotate("segment", x = 1, xend = 2, y = 6, yend = 6) + 
   annotate("segment",
