@@ -48,7 +48,7 @@ behandlede_data <- behandlede_data |>
   mutate(starttidspunkt = factor(starttidspunkt, levels = c("Morgen", "Kveld")))
 
 figur_resultater <- ggplot(data = behandlede_data,
-                 aes(deltager, VO2_maks_abs/1000)) +
+                 aes(deltager, VO2_maks_rel)) +
   
   geom_point(size = 1.5,
 color = "black") + 
@@ -57,11 +57,11 @@ color = "black") +
   
   labs(
     x = "Deltagere",
-    y = "VO2-maks (L/min)") + 
+    y = "VO2-maks (ml/kg/min)") + 
   
   scale_y_continuous(
-    limits = c(2.8, 5.5),
-    breaks = seq(2.5, 5.5, by = 0.5),
+    limits = c(45, 70),
+    breaks = seq(45, 70, by = 5),
     expand = c(0, 0)) + 
   
   theme_bw()
@@ -82,7 +82,7 @@ library(readxl)
 #FORSLAG 2
 tabell <- read.csv("data/behandlet/behandlet_vo2maks.csv")
 
-mod <- lm(VO2_maks_abs ~ starttidspunkt + deltager, data = tabell)
+mod <- lm(VO2_maks_rel ~ starttidspunkt + deltager, data = tabell)
 pval <- round(coef(summary(mod))[2, 4], 5)
 
 
@@ -90,7 +90,7 @@ tabell <- tabell |>
   mutate(starttidspunkt = factor(starttidspunkt, levels = c("Morgen", "Kveld")))
 
 fig_resultater <- ggplot(data = tabell,
-                 aes(x = starttidspunkt, y = VO2_maks_abs/1000, group = deltager, color = deltager)) +
+                 aes(x = starttidspunkt, y = VO2_maks_rel, group = deltager, color = deltager)) +
   
   geom_line(linewidth = 0.7) + 
   
@@ -100,26 +100,26 @@ fig_resultater <- ggplot(data = tabell,
   
   labs(
     x = "Tid på døgnet",
-    y = "VO2-maks (L/min)",
+    y = "VO2-maks (ml/kg/min)",
     
     color = "Deltager") + 
   
   scale_y_continuous(
-    limits = c(2.8, 7.0),
-    breaks = seq(2.5, 7.0, by = 0.5),
-    expand = c(0, 0)) + 
+    limits = c(45, 70),
+    breaks = seq(45, 70, by = 5),
+    expand = c(0, 0)) +  
   
   theme_linedraw() +
   
-  annotate("segment", x = 1, xend = 2, y = 6, yend = 6) + 
+  annotate("segment", x = 1, xend = 2, y = 67, yend = 67) + 
   annotate("segment",
            x = c(1, 2), 
            xend = c(1, 2),
-           y = c(6, 6),
-           yend = c(5.9, 5.9)) + 
+           y = c(67, 67),
+           yend = c(66, 66)) + 
   
   annotate("text", label = paste0("P-verdi = ", pval),
-           x = 1.5, y = 6.2)
+           x = 1.5, y = 68)
 
 print(fig_resultater)
 

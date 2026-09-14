@@ -10,21 +10,20 @@ data_behandlet <- raadata |>
   mutate(
     dato = as_date(dato),
     starttidspunkt = format(starttidspunkt, "%H:%M:%S"),
-    starttidspunkt = if_else(starttidspunkt < "10:00:00", "Morgen", "Kveld"),
-    timer_sovn = format(timer_sovn, "%H:%M:%S")
+    starttidspunkt = if_else(starttidspunkt < "10:00:00", "Morgen", "Kveld")
   ) |> 
   
   select(deltager, 
          dato, 
+         alder,
          starttidspunkt, 
-         timer_sovn, 
          VO2_maks_rel,
-         VO2_maks_abs,
-         hastighet_maks, 
+         VO2_maks_abs, 
          HF_maks, 
          la_maks, 
          RER_maks,
-         kjonn) |> 
+         kjonn,
+         borg_maks) |> 
   
   print()
 
