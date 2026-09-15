@@ -199,3 +199,11 @@ En annen viktig faktor er utvalgsstørrelsen til denne studien. Det var kun seks
 Parade testdesignet er en styrke ved studien, ettersom de samme deltakerne gjennomførte både morgen og kveldstest. Dette gjorde det mulig å kontrollere for individuelle forskjeller i analysen. Deltakernes erfaring med maksimale fysiologiske laboratoriet tester kan også ha redusert læringseffekter. Begrensninger ved prosjektet er at det var vanskelig å sikre seg helt like forutsetninger ved begge testtidspunkt, og at det var for få tester gjennomført pr deltaker. Optimalt skulle studien hatt fire tester pr. deltaker, to om morgen og to om kveld. Dette for å ta høyde for tilfeldige variasjoner mellom testdagene, og dermed redusere betydningen av at èn enkelt test kunne vært uvanlig god eller dårlig.  
 
 På bakgrunn av resultatene kan det derfor ikke konkluderes med at tidspunkt på dagen ikke påvirker VO₂maks. funnene viser imidlertid at det ikke ble funnet en statistisk signifikant forskjell mellom morgen- og kveldstest i dette utvalget. Videre forskning med større utvalg kan bidra til å avklare dette. 
+
+# Referanseliste
+
+Kang, J., Ratamess, N. A., Faigenbaum, A. D., Bush, J. A., Finnerty, C., DiFiore, M., Garcia, A., & Beller, N. (2023). Time-of-day effects of exercise on cardiorespiratory responses and endurance performance—A systematic review and meta-analysis. Journal of Strength and Conditioning Research, 37(10), 2080–2090.<https://doi.org/10.1519/JSC.0000000000004497> 
+
+Knaier, R., Qian, J., Roth, R., Infanger, D., Notter, T., Wang, W., Cajochen, C., & Scheer, F. A. J. L. (2022). Diurnal variation in maximum endurance and maximum strength performance: A systematic review and meta-analysis. Medicine & Science in Sports & Exercise, 54(1), 169–180. <https://doi.org/10.1249/MSS.0000000000002773> 
+
+Kusumoto, H., Ta, C., Brown, S. M., & Mulcahey, M. K. (2021). Factors contributing to diurnal variation in athletic performance and methods to reduce within-day performance variation: A systematic review. Journal of Strength and Conditioning Research, 35(12S), S119–S135. <https://doi.org/10.1519/JSC.0000000000003758> 
