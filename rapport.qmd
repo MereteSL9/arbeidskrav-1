@@ -2,7 +2,7 @@
 title: "Arbeidskrav 1 - Arbeidsfysiologisk rapport"
 subtitle: "Påvirker tidspunkt på dagen VO2maks?"
 author: "Hanne N. Kjærstad, Jonas Amundsen, Marit Heinemann og Merete S. Lien"
-date: "2026-09-16"
+date: "16. september 2026"
 execute: 
   warning: false
   message: false
@@ -16,6 +16,16 @@ editor: visual
 editor_options: 
   chunk_output_type: console
 ---
+
+\begin{center}HSV (Helse og sosialvitenskapelig fakultet)
+
+Arbeidskrav 1 - Kvantitativ metode og statistikk
+
+Høst 2026
+
+Studieprogram: Treningsfysiologi
+
+Emnekode: IDR4000 \end{center}
 
 {{< pagebreak >}}
 
@@ -71,15 +81,15 @@ Gjennomsnitt og standardavvik, samt grafiske fremstillinger ble utformet i R ved
 
 # Beskrivelse av datainnhenting
 
-Dataene ble innhentet under arbeidsfysiologiske tester gjennomført på testlabben ved Universitet i Innlandet på Lillehammer med frivillige deltakerne rekruttert blant studentene. Kroppsvekt ble registrert før hver test. Testing av VO2maks ble gjennomført på en motorisert tredemølle (Woodway) med en konstant stigning på 10,5%. Starthastigheten ble satt til 6 km/t for jentene og 8 km/t for guttene. Farten økte med 1 km/t hvert minutt til deltakerne oppnådde fysisk utmattelse. Under testene ble VO2maks målt ved indirekte kalorimetri (Vyntus), mens hjertefrekvens (slag/min) ble målt kontinuerlig med telemetrisk pulsmåler (pulsbelte tilkoblet klokke eller Vyntus) og registrert hvert halvt minutt. Laktatkonsentrasjonen ble målt fra en blodprøve tatt ett minutt etter avsluttet test og analysert med Biosen C-line, og opplevd anstrengelse ble vurdert ved hjelp av Borgs 6-20 skala. I tillegg ble testvarighet og høyeste hastighet sprunget nedskrevet.
+Dataene ble innhentet under arbeidsfysiologiske tester gjennomført på testlabben ved Universitet i Innlandet på Lillehammer med frivillige deltakerne rekruttert blant studentene. Kroppsvekt ble registrert før hver test. Testing av VO2maks ble gjennomført på en motorisert tredemølle (Woodway) med en konstant stigning på 10,5%. Starthastigheten ble satt til 6 km/t for jentene og 8 km/t for guttene. Farten økte med 1 km/t hvert minutt til deltakerne oppnådde fysisk utmattelse. Under testene ble VO2maks målt ved indirekte kalorimetri (Vyntus). VO2maks ble beregnet av gjennomsnittet av de to høyeste påfølgende 30-sekunders målingene. Hjertefrekvens (slag/min) ble målt kontinuerlig med telemetrisk pulsmåler (pulsbelte tilkoblet klokke eller Vyntus) og registrert hvert halvt minutt. Laktatkonsentrasjonen ble målt fra en blodprøve tatt ett minutt etter avsluttet test og analysert med Biosen C-line, og opplevd anstrengelse ble vurdert ved hjelp av Borgs 6-20 skala. I tillegg ble testvarighet og høyeste hastighet oppnådd notert.
 
 # Resultater
 
-Studien fant ingen statistisk signifikant forskjell i VO2maks mellom morgen- og kveldstest, som vist ved p-verdi = 0.580 i @fig-vo2maks. Det gjennomsnittlige relative oksygenopptaket var stabilt med 54.2 ± 8.2 ml/kg/min på morgenen, til forskjell fra 53.9 ± 7.8 ml/kg/min på kvelden. De fleste av deltakerne hadde tilnærmet stabile målinger mellom morgen- og kveldstest, med unntak av deltaker 2 som hadde en svak økning på kveldstesten og deltaker 4 som hadde en svak reduksjon på kveldstesten. Det var store individuelle forskjeller mellom testdeltakerne.
+Studien fant ingen statistisk signifikant forskjell i VO2maks mellom morgen- og kveldstest, som vist ved p-verdi = 0.580 i @fig-vo2maks. Gjennomsnittlig $VO_2$maks var stabilt med 54.2 ± 8.2 $ml \cdot kg^{-1} \cdot min^{-1}$ om morgenen og 53.9 ± 7.8 $ml \cdot kg^{-1} \cdot min^{-1}$ på kvelden. Den gjennomsnittlige forskjellen mellom betingelsene var dermed -0.3 $ml \cdot kg^{-1} \cdot min^{-1}$. De fleste av deltakerne hadde tilnærmet stabile målinger mellom morgen- og kveldstest, med unntak av deltaker 2 som hadde en svak økning på kveldstesten og deltaker 4 som hadde en svak reduksjon på kveldstesten. Det var store individuelle forskjeller mellom testdeltakerne.
 
 ```{r}
 #| label: fig-vo2maks
-#| fig-cap: "Forskjell i VO2 maks mellom morgen og kveld"
+#| fig-cap: "Individuelle relative VO2maks-verdier ved morgen- og kveldstesting. Linjene forbinder de to målingene fra samme deltaker"
 #| fig-align: center
 
 library(tidyverse)
@@ -131,7 +141,7 @@ fig_resultater <- ggplot(data = tabell,
 print(fig_resultater)
 ```
 
-Når det gjelder de øvrige inkluderte variablene, viste studien liten forskjell mellom testtidspunktene. Gjennomsnittlig hjertefrekvens var marginalt høyere på morgenen med 198 ± 10 bpm, til forskjell fra 195 ± 10 bpm på kvelden. Laktatverdier målt ett minutt i etterkant av avsluttet test viste tilnærmet like resultater mellom testtidspunktene med 10.11 ± 2.91 mmol/L på morgenen vs. 10.53 ± 2.99 mmol/L på kvelden. RER og Borg viste at deltakerne oppnådde reell utmattelse, observert ved RER høyere enn 1.15 og Borg-score \> 17. RER og Borg hadde like resultater ved begge testtidspunkter.
+Når det gjelder de øvrige inkluderte variablene, viste studien liten forskjell mellom testtidspunktene. Gjennomsnittlig hjertefrekvens var marginalt høyere på morgenen med 198 ± 10 bpm, til forskjell fra 195 ± 10 bpm på kvelden. Laktatverdier målt ett minutt i etterkant av avsluttet test viste tilnærmet like resultater mellom testtidspunktene med 10,11 ± 2,91 mmol/L på morgenen vs. 10,53 ± 2,99 mmol/L på kvelden. RER og Borg var sammenlignbare ved begge testtidspunkter. 
 
 Gjennomsnittlige verdier med standardavvik for de inkluderte variablene på de ulike starttidspunktene står beskrevet i @tbl-resultater.
 
@@ -190,15 +200,13 @@ kable(tabell_resultater, format = "latex", booktabs = TRUE) |>
 
 # Diskusjon
 
-I denne studien undersøkte vi i hvilken grad tidspunkt på dagen påvirker VO₂maks hos aktive studenter. Det ble ikke funnet noen signifikante forskjell i VO₂maks mellom morgen og kveld. Funnet står i tråd med Knaier et al. (2022) og Kang et al. (2023) som fant begrenset til ingen evidens for systematiske variasjoner i maksimal utholdenhets gjennom dagen. At denne studien heller ikke fant noen signifikant som antyder at døgnvariasjoner i maksimal utholdenhet ikke nødvendigvis er like tydelige som i andre fysisk prestasjonsparametere. Samtidig fant Knaier et al. (2019) at VO₂maks kan variere gjennom dagen for idrettsutøvere. Så her strider våre funn med forskningen. Dette kan tyde på at døgnvariasjonen i VO₂maks kan variere mellom studier og individer.  
+Denne studien undersøkte i hvilken grad tidspunkt på dagen påvirker VO2maks hos aktive studenter. Det ble ikke funnet noen signifikant forskjell i VO2maks mellom morgen og kveld. Funnet står i tråd med Knaier et al. (2022) og Kang et al. (2023) som fant begrenset til ingen evidens for systematiske variasjoner i maksimal utholdenhetsprestasjon gjennom dagen. Samtidig fant Knaier et al. (2019) at VO2maks kan variere gjennom dagen for idrettsutøvere. Så her strider studiens funn med forskningen. Dette kan tyde på at døgnvariasjonen i VO2maks kan variere mellom studier og individer.
 
-En mulig forklaring på at denne studien ikke fant noen signifikant forskjell i VO₂maks, kan være de store individuelle forskjellene mellom deltakerne, noe som kan ha påvirket resultatene. Deltakerne kan ha ulike forutsetninger for prestasjon på de to testtidspunktene, blant annet som følge av forskjeller i fysisk kapasitet, døgnrytme og treningsbakgrunn. I tillegg kan faktorer som søvn, fysisk aktivitet og ernæring ha påvirket prestasjonen fra test til test. Kusomoto et al. (2021) fremhever at slike faktorer som mulige årsaker til variasjon i fysisk prestasjon gjennom dagen.  
+En viktig begrensning i dette prosjektet var at hver deltaker kun gjennomførte én morgen- og én kveldstest. Det er derfor vanskelig å avgjøre om en eventuell forskjell i VO2maks skyldes tidspunkt på døgnet eller dag-til-dag-variasjon. Flere målinger på hvert tidspunkt ville gitt et bedre grunnlag for å vurdere om forskjeller faktisk skyldes tidspunktet på dagen, men dette var ikke praktisk mulig å gjennomføre i dette miniprosjektet.
 
-En annen viktig faktor er utvalgsstørrelsen til denne studien. Det var kun seks deltakere som gjennomførte to tester hver. Dette lille utvalget gir begrenset statistisk styrke, og det er derfor mulig at en eventuell forskjell i VO₂maks ikke ble oppdaget i denne studien. Resultatet p = 0,580 viser til ingen signifikant forskjell i dette utvalget, men gir ikke grunnlag for å konkludere med at det ikke finnes noe døgnvariasjon i VO₂maks. 
+En annen begrensende faktor er studiens utvalgsstørrelse. Det var kun seks deltakere som gjennomførte to tester hver. Dette utvalget gir begrenset statistisk styrke, og det er derfor mulig at en eventuell forskjell i VO2maks ikke ble oppdaget i denne studien. Resultatet p = 0,580 viser til ingen signifikant forskjell i dette utvalget, men gir ikke grunnlag for å konkludere med at det ikke finnes noe døgnvariasjon i VO2maks. Det var også individuelle forskjeller mellom deltakerne når det gjaldt forskjell i VO2maks mellom morgen og kveld. Dersom enkelte deltakere hadde høyere VO2maks om morgenen og andre høyere om kvelden, kan disse motsatt individuelle responsene redusere den gjennomsnittlige forskjellen på gruppenivå. Slik individuell variasjon er også funnet av Knaier et al. (2019). Det parrede testdesignet er en styrke ved studien, ettersom de samme deltakerne gjennomførte både morgen og kveldstest. Dette reduserte betydningen av stabile individuelle forskjeller fordi hver deltaker i praksis fungerte som sin egen kontroll.
 
-Parade testdesignet er en styrke ved studien, ettersom de samme deltakerne gjennomførte både morgen og kveldstest. Dette gjorde det mulig å kontrollere for individuelle forskjeller i analysen. Deltakernes erfaring med maksimale fysiologiske laboratoriet tester kan også ha redusert læringseffekter. Begrensninger ved prosjektet er at det var vanskelig å sikre seg helt like forutsetninger ved begge testtidspunkt, og at det var for få tester gjennomført pr deltaker. Optimalt skulle studien hatt fire tester pr. deltaker, to om morgen og to om kveld. Dette for å ta høyde for tilfeldige variasjoner mellom testdagene, og dermed redusere betydningen av at èn enkelt test kunne vært uvanlig god eller dårlig.  
-
-På bakgrunn av resultatene kan det derfor ikke konkluderes med at tidspunkt på dagen ikke påvirker VO₂maks. funnene viser imidlertid at det ikke ble funnet en statistisk signifikant forskjell mellom morgen- og kveldstest i dette utvalget. Videre forskning med større utvalg kan bidra til å avklare dette. 
+Det ble ikke påvist noen statistisk signifikant forskjell i relativ VO2maks mellom morgen- og kveldstesting. Funnene indikerer med det at testtidspunktet ikke hadde avgjørende betydning, men det er viktig å bemerke at dette er gjeldende for denne studiens utvalg. Videre forskning med større utvalg kan bidra med en ytterligere avklaring med høyere statistisk styrke.
 
 # Referanseliste
 
